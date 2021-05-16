@@ -1,0 +1,22 @@
+{
+  "name": "bot-discord-obenkyo",
+  "version": "1.0.0",
+  "main": "src/bot.js",
+  "repository": "https://github.com/smochii/bot-discord-obenkyo.git",
+  "author": "mochi",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node ./src/bot.ts",
+    "compile": "tsc -p .",
+    "compile:test": "tsc -p . --noEmit"
+  },
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^9.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^15.0.3",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  }
+}
