@@ -1,9 +1,9 @@
 import Discord from 'discord.js';
 import Command from "./Command";
-import Role from '../Roles/Role';
-import ProgramingRole from '../Roles/ProgramingRole';
-import DesignRole from '../Roles/DesignRole';
-import GameDesignRole from '../Roles/GameDesignRole';
+import Role from '../roles/Role';
+import ProgramingRole from '../roles/ProgramingRole';
+import DesignRole from '../roles/DesignRole';
+import GameDesignRole from '../roles/GameDesignRole';
 
 const roles: Role[] = [
   ProgramingRole,
