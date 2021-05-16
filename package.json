@@ -6,8 +6,8 @@
   "author": "mochi",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/bot.js",
-    "start:dev": "ts-node ./src/bot.ts",
+    "s": "node ./dist/bot.js",
+    "s:dev": "ts-node ./src/bot.ts",
     "build": "tsc"
   },
   "dependencies": {
