@@ -24,22 +24,22 @@ const RoleCommand: Command = {
       return;
     }
 
-    const aliases = args[0];
+    const alias = args[0];
 
     let executed = false;
     for (const role of roles) {
-      if (!role.aliases.includes(aliases)) {
+      if (!role.aliases.includes(alias)) {
         continue;
       }
 
       const roles = member.roles.cache.map((role) => { return role.id });
     
-      if (roles.includes(ProgramingRole.id)) {
-        await member.roles.remove(ProgramingRole.id);
-        await message.channel.send(`「${ProgramingRole.name}」のロールを削除したぴょん`);
+      if (roles.includes(role.id)) {
+        await member.roles.remove(role.id);
+        await message.channel.send(`「${role.name}」のロールを削除したぴょん`);
       } else {
-        await member.roles.add(ProgramingRole.id);
-        await message.channel.send(`「${ProgramingRole.name}」のロールを付与したぴょん`);
+        await member.roles.add(role.id);
+        await message.channel.send(`「${role.name}」のロールを付与したぴょん`);
       }
       executed = true;
       return;
