@@ -26,12 +26,12 @@ client.on("message", async (message) => {
             return;
         }
         const args = message.content.slice(PREFIX.length).trim().split(/ +/);
-        const aliases = args.shift();
-        if (!aliases) {
+        const alias = args.shift();
+        if (!alias) {
             return;
         }
         for (const command of commands) {
-            if (!command.aliases.includes(aliases)) {
+            if (!command.aliases.includes(alias)) {
                 continue;
             }
             if (args.length < command.minArgs ||
