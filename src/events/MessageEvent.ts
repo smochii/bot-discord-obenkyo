@@ -11,7 +11,7 @@ if(typeof PREFIX === 'undefined') {
 }
 
 const MessageEvent: Event = {
-  name: 'nessage',
+  name: 'message',
   listener: async message => {
     try {
       if (!message.content.startsWith(PREFIX) || message.author.bot) {
