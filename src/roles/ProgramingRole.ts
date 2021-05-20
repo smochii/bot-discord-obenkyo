@@ -1,4 +1,4 @@
-import Role from './Role'
+import Role from '../types/Role'
 
 const ProgramingRole: Role = {
   id: '832212872012627968',

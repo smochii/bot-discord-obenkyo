@@ -1,4 +1,4 @@
-import Role from './Role'
+import Role from '../types/Role'
 
 const GameDesignRole: Role = {
   id: '842486441112371211',

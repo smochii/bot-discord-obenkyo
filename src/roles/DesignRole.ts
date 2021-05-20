@@ -1,4 +1,4 @@
-import Role from './Role'
+import Role from '../types/Role'
 
 const DesignRole: Role = {
   id: '832150534496321576',

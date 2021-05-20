@@ -30,13 +30,14 @@ const RoleCommand = {
                 continue;
             }
             const roles = member.roles.cache.map((role) => { return role.id; });
+            const memberName = member.nickname ? member.nickname : member.displayName;
             if (roles.includes(role.id)) {
                 await member.roles.remove(role.id);
-                await message.channel.send(`「${role.name}」のロールを削除したぴょん`);
+                await message.channel.send(`${memberName}の「${role.name}」ロールを削除したぴょん`);
             }
             else {
                 await member.roles.add(role.id);
-                await message.channel.send(`「${role.name}」のロールを付与したぴょん`);
+                await message.channel.send(`${memberName}に「${role.name}」ロールを付与したぴょん`);
             }
             executed = true;
             return;
