@@ -1,11 +1,15 @@
 import Command from "../types/Command"
+import CreateRoleCommand from "./CreateRoleCommand"
+import DebugCommand from "./DebugCommand"
 import PingCommand from "./PingCommand"
-import RoleCommand from "./RoleCommand"
+import GrantRoleCommand from "./GrantRoleCommand"
 
 // Define commands to use.
 const _Commands: Command[] = [
   PingCommand,
-  RoleCommand
+  GrantRoleCommand,
+  CreateRoleCommand,
+  DebugCommand
 ]
 
 export default _Commands

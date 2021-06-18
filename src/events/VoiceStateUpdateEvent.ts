@@ -12,7 +12,7 @@ const mockDB: any = {};
 const VoiceStateUpdateEvent: Event = {
   name: 'voiceStateUpdate',
   listener: (oldState: Discord.VoiceState, newState: Discord.VoiceState) => {
-    if (!newState.member) {
+    if (!newState.member || newState.member.user.bot) {
       return;
     }
 
