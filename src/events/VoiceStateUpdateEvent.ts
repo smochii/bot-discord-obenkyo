@@ -1,34 +1,29 @@
 import Discord from 'discord.js';
+import Redis from 'ioredis';
 import Event from "../types/Event";
 
-/**
- * とりあえず実現性見るために雑に実装してそのままな状態…
- * そのうち書き直す…
- */
-
 const textChannelId = '844854918368198667';
-const mockDB: any = {};
+const redis = new Redis(process.env.REDIS_URL);
 
 const VoiceStateUpdateEvent: Event = {
   name: 'voiceStateUpdate',
-  listener: (oldState: Discord.VoiceState, newState: Discord.VoiceState) => {
+  listener: async (oldState: Discord.VoiceState, newState: Discord.VoiceState) => {
     if (!newState.member || newState.member.user.bot) {
       return;
     }
 
+    let joinTimestamp = await redis.get(newState.member.id);
+
     if (newState.member.voice.channel) {
-      // join
-      if (!Object.keys(mockDB).includes(newState.member.id)) {
+      if (!joinTimestamp) {
         const timestamp = Date.now();
-        mockDB[newState.member.id] = timestamp;
-        console.log(mockDB);
+        await redis.set(newState.member.id, timestamp.toString());
       }
     } else {
-      // exit
-      if (Object.keys(mockDB).includes(newState.member.id)) {
+      if (joinTimestamp) {
         const timestamp = Date.now();
-        const connectTime = Math.floor((timestamp - mockDB[newState.member.id]) / 1000);
-        delete mockDB[newState.member.id];
+        const connectTime = Math.floor((timestamp - Number(joinTimestamp)) / 1000);
+        await redis.del(newState.member.id);
 
         const name = newState.member.nickname ? newState.member.nickname : newState.member.displayName;
         const h = Math.floor(connectTime / 3600);
@@ -37,8 +32,6 @@ const VoiceStateUpdateEvent: Event = {
 
         const textChannel = newState.client.channels.cache.get(textChannelId) as Discord.TextChannel;
         textChannel.send(`${name} は \`${h ? h + '時間' : ''}${m ? m + '分' : ''}${s}秒\` くらい勉強してたぴょん`);
-
-        console.log(mockDB);
       }
     }
   }
